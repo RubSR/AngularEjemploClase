@@ -1,0 +1,110 @@
+<div class="container m-auto">
+  <h1 class="text-center">Mis articulos</h1>
+  <hr>
+  <!--Fomularios -->
+  <div>
+    <form [formGroup]="formulario" (submit)="formData()">
+
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre"  formControlName="nombre" >
+        <mat-hint>Escriba su nombre </mat-hint>
+        <mat-error *ngIf="formulario.get('nombre')?.errors?.['required']" > El campo es obligatorio</mat-error>
+      </mat-form-field>
+
+      <!-- Select -->
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Categorias</mat-label>
+        <mat-select multiple formControlName="categoria">
+          <mat-option *ngFor="let cat of categoriasList" [value]="cat">{{cat}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--Stock -->
+      <mat-form-field appearance="outline" class="col-2">
+        <mat-label>Stock</mat-label>
+        <input matInput placeholder="Stock"  formControlName="stock" type="number">
+        <mat-error > El campo es obligatorio</mat-error>
+      </mat-form-field>
+
+      <!-- Precio -->
+      <mat-form-field appearance="outline" class="col-2">
+        <mat-label>Precio</mat-label>
+        <input matInput placeholder="Precio"  formControlName="precio" type="number">
+        <mat-error > El campo es obligatorio</mat-error>
+      </mat-form-field>
+
+      <!-- En Venta -->
+      <mat-radio-group formControlName="enVenta" class="col-4">
+        <mat-label>En venta</mat-label>
+        <mat-radio-button [value]="true" >Si</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </mat-radio-group>
+
+      <div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-success" (click)="update()">Modificar</button>
+      </div>
+
+    </form>
+
+  </div>
+
+
+
+  <!-- tabla de articulos -->
+  <!-- *ngFor  : me permite pintar tantos elementos como tenga un array -->
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Categorias</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Precio</th>
+      <th scope="col">En venta</th>
+      <th scope="col">Acciones</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Coja el array y pinte uno por uno los elementos -->
+    <tr *ngFor="let articulo of articulosList; let i=index">
+      <th scope="row" [id]="i">{{i}}</th>
+      <td>{{articulo.nombre}}</td>
+      <td>
+        <ul>
+          <li *ngFor="let categoria of articulo.categorias">{{categoria}}</li>
+        </ul>
+      </td>
+
+      <td>{{articulo.stock}}</td>
+      <td>{{articulo.precio}} €</td>
+
+      <!-- *ngSwitch: Se comporta como un switch y pinta la etiqueta segun el caso
+       -->
+
+      <td [ngSwitch]="articulo.enVenta">
+        <p *ngSwitchCase="true">Si</p>
+        <p *ngSwitchCase="false">No</p>
+        <p *ngSwitchDefault>Default</p>
+      </td>
+      <!--*ngIf: Motrar la etuiqueta html si se cumple la condicion de dentro del if -->
+     <!-- <td *ngIf="articulo.stock > 0">
+        <button type="button" class="btn btn-primary">Comprar</button>
+      </td> -->
+      <td>
+        <button type="button" class="btn btn-primary"  (click)="modificar(articulo, i)" >Modificar</button>
+      </td>
+    </tr>
+
+
+    </tbody>
+  </table>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4" >
+    <button type="button" class="btn btn-success" (click)="addArticulo()">Añadir articulo</button>
+    <button type="button" class="btn btn-danger" (click)="removeArticulo()">Borrar</button>
+  </div>
+
+
+</div>

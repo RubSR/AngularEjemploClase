@@ -1,0 +1,23 @@
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <!-- Titulo de la app -->
+    <a class="navbar-brand" >Mi app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Primera pagina -->
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['home']" (click)="borrarActive()">Home</a>
+        </li>
+        <!-- Segunda pagina -->
+        <li class="nav-item " [ngClass]="claseActive">
+          <a class="nav-link" (click)="navegar()">Articulos</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
