@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{nombre}}</h2>
+<mat-dialog-content>
+
+  <mat-form-field>
+    <mat-label>Que le vas a regalar a Rubén??</mat-label>
+    <input matInput [formControl]="regalo">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" >No, gracias</button>
+  <button mat-button [mat-dialog-close]="regalo.value" [disabled]="regalo.value == ''">Quiero aprobar</button>
+</mat-dialog-actions>

@@ -17,6 +17,11 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {ReactiveFormsModule} from "@angular/forms";
+import { DialogComponent } from './pages/dialog/dialog/dialog.component';
+import {MatButtonModule} from "@angular/material/button";
+import { BasicDialogComponent } from './pages/dialog/basic-dialog/basic-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogWithDataComponent } from './pages/dialog/dialog-with-data/dialog-with-data.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     FooterComponent,
     HomeComponent,
     ArticulosComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    DialogComponent,
+    BasicDialogComponent,
+    DialogWithDataComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +46,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

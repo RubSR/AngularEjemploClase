@@ -1,0 +1,40 @@
+<div class="container m-auto">
+
+  <h2>Dialogs</h2>
+  <hr>
+  <div class="row">
+
+    <!--Columna con boton dialog1-->
+    <div class="col-6">
+      <h4 class="text-center">Dialog básico reutilizable</h4>
+      <div class="m-auto">
+        <button mat-raised-button color="primary" (click)="openBasicDialog()">Abrir dialog</button>
+      </div>
+    </div>
+
+    <!--Columna con boton dialog1-->
+    <div class="col-6">
+      <h4 class="text-center">Dialog  con envio y recibo de datos</h4>
+
+      <mat-form-field>
+        <mat-label>Nombre Alumno:</mat-label>
+        <input matInput [formControl]="nombre" >
+      </mat-form-field>
+
+      <div class="m-auto">
+        <button mat-raised-button color="primary" (click)="openDialogWithData()" >Abrir dialog</button>
+      </div>
+
+      <h3>Resultado de la encuesta:</h3>
+      <h3>{{resultado}}</h3>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<ng-template #modal1>
+
+</ng-template>
