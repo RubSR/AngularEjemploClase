@@ -95,6 +95,7 @@
       </td> -->
       <td>
         <button type="button" class="btn btn-primary"  (click)="modificar(articulo, i)" >Modificar</button>
+        <button type="button" class="btn btn-primary"  [routerLink]="['/detail']" [state]="{articulo: articulo}">Ir a detalle</button>
       </td>
     </tr>
 

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Articulos} from "../../models/Articulos";
 import {FormBuilder, FormControl, FormControlState, FormGroup, Validators} from "@angular/forms";
+import {ArticulosService} from "../../services/articulos.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-articulos',
@@ -33,11 +35,20 @@ export class ArticulosComponent implements OnInit{
   });
   posicion: number = 0;
 
-  constructor( private fb: FormBuilder) {
+  constructor( private fb: FormBuilder, private articuloService: ArticulosService, private router: Router) {
   }
 
   ngOnInit(): void {
+    //Para simular que nos llegan datos de la api
+  this.articulosList = this.articuloService.crearArticulos();
+  //Comprobar si exite el articulo modificado que viene de la pagina detail
+    //Ojo que al inicio el articulo del servicio no esta seteado -> undefined
+    //pero solo quiero traermelo cuando se haya modificado de verdad
+    if(this.articuloService.articulo != undefined){
+      //TODO: METERLO EN LA LISTA EN LA MISMA POSICION EN LA QUE ESTABA
+      this.articulosList[this.articuloService.posicion] = this.articuloService.articulo;
 
+    }
   }
 
 
@@ -107,5 +118,12 @@ export class ArticulosComponent implements OnInit{
     //Dentro del array de articulos cambiar el viejo por el modificado
     // en la misma posicion
     this.articulosList[this.posicion] = articulo;
+  }
+
+  irAdetalle(articulo: Articulos, i: number) {
+    //Set del articulo y de la posicion en el servicio
+    this.articuloService.articulo = articulo;
+    this.articuloService.posicion = i;
+    this.router.navigate(['detail'])
   }
 }

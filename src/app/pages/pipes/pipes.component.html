@@ -1,0 +1,21 @@
+<div class="container m-auto">
+  <h2 class="text-center">Pipes</h2>
+  <hr>
+
+
+  <div class="m-auto w-50">
+    <p>Pipe dinero: {{dineros | currency: 'EUR': 'symbol': '1.0-2' : 'es'}}</p>
+    <p>Pipe numero: {{numero | number: '2.1-5' }}</p>
+    <p>Pipe texto: {{texto | uppercase}}</p>
+    <p>Pipe texto: {{texto | lowercase}}</p>
+    <p>Pipe texto: {{texto | titlecase}}</p>
+    <p>Pipe fecha: {{fecha | date: 'short' : undefined: 'es-ES'}}</p>
+    <p>Pipe fecha: {{fecha | date: 'dd-MM/yyyy' : undefined: 'es-ES'}}</p>
+    <p>Pipe presonalizada: {{2 | persolanizada: 5}}</p>
+
+  </div>
+
+
+
+
+</div>

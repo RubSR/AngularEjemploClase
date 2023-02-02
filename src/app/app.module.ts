@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,15 @@ import {MatButtonModule} from "@angular/material/button";
 import { BasicDialogComponent } from './pages/dialog/basic-dialog/basic-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogWithDataComponent } from './pages/dialog/dialog-with-data/dialog-with-data.component';
+import { PipesComponent } from './pages/pipes/pipes.component';
+//Importamos a mano
+import LocaleES from '@angular/common/locales/es'
+
+import {DatePipe, registerLocaleData} from "@angular/common";
+import { PersolanizadaPipe } from './pages/pipes/persolanizada.pipe';
+import { ArticuloDetailComponent } from './pages/articulo-detail/articulo-detail.component';
+//Registramos
+registerLocaleData(LocaleES, 'es')
 
 @NgModule({
   declarations: [
@@ -33,7 +42,10 @@ import { DialogWithDataComponent } from './pages/dialog/dialog-with-data/dialog-
     NotfoundComponent,
     DialogComponent,
     BasicDialogComponent,
-    DialogWithDataComponent
+    DialogWithDataComponent,
+    PipesComponent,
+    PersolanizadaPipe,
+    ArticuloDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +62,11 @@ import { DialogWithDataComponent } from './pages/dialog/dialog-with-data/dialog-
     MatButtonModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [
+    //Inyectamos el locale
+    {provide: LOCALE_ID, useValue: 'es'},
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
